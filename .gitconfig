@@ -7,7 +7,6 @@
 	keepBackup = false
 [user]
 	name = Eric Butera
-	email = eric@bytepro.net
 [core]
 	excludesfile = /Users/eric/.gitignore_global
 [difftool "sourcetree"]
