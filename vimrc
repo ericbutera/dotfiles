@@ -1,5 +1,9 @@
-" sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ 
-" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin("~/.vim/plugged")
   " Plug 'dracula/vim'
@@ -9,7 +13,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'junegunn/fzf.vim'
 
   Plug 'romainl/Apprentice'
-  " Plugin 'romainl/flattened' 
+  " Plugin 'romainl/flattened'
   " Plugin 'baskerville/bubblegum'
 call plug#end()
 
@@ -61,7 +65,7 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 
 autocmd FileType yaml,json set ai sw=2 ts=2 sta et fo=croql
-" autocmd FileType js,html set ai sw=4 ts=4 sta et fo=croql 
+" autocmd FileType js,html set ai sw=4 ts=4 sta et fo=croql
 
 " put swap, backup and undo files in a special location
 " https://stackoverflow.com/a/15317146/261272
@@ -94,11 +98,11 @@ map <C-l> <C-w>l
 " set incsearch
 " set hlsearch
 " set ignorecase " https://stackoverflow.com/a/2287449/261272
-" set smartcase 
+" set smartcase
 " nnoremap <silent> <leader>l :nohl<CR><C-l>
 
 set novisualbell
-set noerrorbells 
+set noerrorbells
 " set t_vb=
 " autocmd! GUIEnter * set vb t_vb=
 
